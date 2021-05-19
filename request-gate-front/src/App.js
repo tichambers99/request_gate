@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Container>
+        <Container className='container'>
           <Row>
             <Col md='2'>
             <SideBar />
