@@ -9,3 +9,22 @@
   font-size: 24px;
   text-align: center;
 }
+
+.box__list{
+  list-style: none;
+  padding: 0px;
+}
+
+.box__list a{
+  color: #000;
+}
+
+.box__list a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.box__list li:hover{
+  cursor: pointer;
+  background-color: #ddd;
+}
