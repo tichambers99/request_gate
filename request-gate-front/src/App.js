@@ -10,6 +10,7 @@ import { Col, Row, Container } from 'reactstrap';
 import Home from './components/home/Home';
 import CreateRequest from './components/request/CreateRequest';
 import SideBar from './components/sidebar/Sidebar';
+import Login from './components/login/Login';
 
 function App() {
   return (
@@ -25,9 +26,13 @@ function App() {
                 <Route path="/create-request">
                   <CreateRequest />
                 </Route>
+                <Route path="/Login">
+                  <Login />
+                </Route>
                 <Route path="/">
                   <Home />
                 </Route>
+                
               </Switch>
             </Col>
           </Row>
