@@ -24,7 +24,7 @@ export default (props) => {
       <Table id="listRequests">
       <thead>
         <tr>
-          <th>Name Request</th>
+          <th>Name Request</th>9
           <th>Content Request</th>
           <th>Author Create</th>
           <th>Date Create</th>
