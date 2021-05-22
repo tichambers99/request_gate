@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import HistoryRequest from './HistoryRequest';
+import Pagination from '../pagination/Pagination';
 
 import '../common.css';
 
@@ -27,6 +28,7 @@ export default function HistoryRequestList(){
           historyReq => <HistoryRequest request={historyReq}/>
         )
       }
+      <Pagination />
     </div>
   )
 }

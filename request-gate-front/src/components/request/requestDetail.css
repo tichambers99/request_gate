@@ -31,7 +31,7 @@
 .request_content{
   margin: 10px 0;
   max-height: 90px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .avatar{
@@ -69,5 +69,5 @@
 
 .box__comment{
   height: 220px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
