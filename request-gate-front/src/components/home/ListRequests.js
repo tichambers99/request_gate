@@ -19,12 +19,12 @@ export default (props) => {
   }, [])
 
   return (
-    <div className='listRequests box'>
+    <div className='listRequests box box_fix'>
       <div className="box__heading">List requests</div>
       <Table id="listRequests">
       <thead>
         <tr>
-          <th>Name Request</th>9
+          <th>Name Request</th>
           <th>Content Request</th>
           <th>Author Create</th>
           <th>Date Create</th>
@@ -45,9 +45,9 @@ export default (props) => {
             <td>{req.status}</td>
         </tr>
         ))}
-        
       </tbody>
     </Table>
+    <button>Next page</button>
     </div>
   );
 };

@@ -19,7 +19,7 @@ export default function HistoryRequestList(){
     fetchData();
   }, [])
   return(
-    <div className="historyRequestList box">
+    <div className="historyRequestList box box_fix">
       <div className="box__heading">History requests</div>
       {
         typeof(historyReqs)!=='undefined' &&

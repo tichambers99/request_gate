@@ -1,3 +1,7 @@
+.listRequests{
+  width: 100%;
+}
+
 #listRequests{
   border: solid 2px #000;
   width: 100%;

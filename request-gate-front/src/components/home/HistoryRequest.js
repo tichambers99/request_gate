@@ -9,7 +9,7 @@ export default function HistoryRequest(props){
     <div className = "historyRequest">
       <Media >
         <Media left>
-          <Media object src="https://findicons.com/files/icons/753/gnome_desktop/64/gnome_image_x_generic.png" alt="Generic placeholder image" />
+          <Media object src="https://findicons.com/files/icons/753/gnome_desktop/64/gnome_image_x_generic.png" height='32px' width='32px' alt="Generic placeholder image" />
         </Media>
         <Media body>
           <h5>{request.author}</h5>
