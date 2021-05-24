@@ -6,7 +6,7 @@ import './request.css'
 
 export default function CreateRequest(){
   return(
-    <Col className="box createForm">
+    <Col className="box box_fix createForm">
       <div className='createForm--flex'>
         <div className='createForm__heading'>Create request</div>
         <button className='button button--green'>Create</button>

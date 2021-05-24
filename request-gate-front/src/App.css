@@ -1,6 +1,6 @@
-/* .App {
-  text-align: center;
-} */
+.App {
+  font-family: 'Balsamiq Sans', cursive;
+}
 
 .container{
   margin-top: 40px;
@@ -30,6 +30,19 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.main{
+  width: 90vw;
+  height: 600px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
 }
 
 @keyframes App-logo-spin {

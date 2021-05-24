@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,13 +9,6 @@
     border: none;
     background: none;
     outline: none;
-  }
-  .App{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #53565A;
   }
   form {
     display: block;
@@ -164,4 +157,50 @@
   .toggle-btn {
     text-align: center;
     padding-bottom: 10px;
-  }
+  } */
+
+.loginPage{
+  height: 100vh;
+  margin: auto;
+}
+
+.login{
+  max-height: 370px;
+  margin: auto;
+  max-width: 500px;
+  padding: 75px;
+  /*make this div is center of the page*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.login__fieldset{
+  border: solid 2px #000;
+  margin-bottom: 20px;
+}
+
+.login__legend{
+  font-size: 14px;
+  width: fit-content;
+  padding: 0px 10px;
+  margin: 0px 10px;
+}
+
+.login__input{
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0px 10px 5px 10px;
+}
+
+.login input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+.button__login{
+  height: 40px;
+  width: 100%;
+}
