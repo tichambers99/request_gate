@@ -37,10 +37,9 @@ function App() {
                   <Route path="/request-detail">
                     <RequestDetail />
                   </Route>
-                  <Route path="/">
+                  <Route path="/request">
                     <Home />
                   </Route>
-                  
                 </Switch>
               </Col>
             </Row>

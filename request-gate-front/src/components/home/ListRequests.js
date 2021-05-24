@@ -1,27 +1,19 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table, Modal } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import Pagination from '../pagination/Pagination';
 
 import '../common.css';
 import './listRequests.css';
+import viewIcon from '../../icon/view.png'
 
 export default (props) => {
-  var [requests, setRequests] = useState([]);
+  const {requests, url} = props;
+  console.log(requests);
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-
-  useEffect(()=>{
-    const fetchData = async () => {
-      const res = await axios.get('https://l1z9u.sse.codesandbox.io/requests');
-      setRequests(res.data);
-      console.log(res.data);
-    }
-
-    fetchData();
-  }, [])
 
   return (
     <div className='listRequests box box_fix'>
@@ -105,6 +97,7 @@ export default (props) => {
           <th>Category</th>
           <th>Assigner</th>
           <th>Status</th>
+          <th>View</th>
         </tr>
       </thead>
       <tbody>
@@ -117,7 +110,16 @@ export default (props) => {
             <td>{req.category}</td>
             <td>{req.assigner}</td>
             <td>{req.status}</td>
-        </tr>
+            <td>
+              <Link to={`${url}/${req.id}`}>
+                <img 
+                  src={viewIcon}
+                  alt='view request'
+                  title="View request"
+                />
+              </Link>
+            </td>
+          </tr>
         ))}
       </tbody>
     </Table>
