@@ -45,3 +45,14 @@
 .createForm__listSelect label, select{
   width: 100px;
 }
+
+.modal__content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__noti{
+  font-size: 18px;
+  font-weight: bold;
+}
