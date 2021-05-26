@@ -13,6 +13,10 @@
   font-weight: bold;
 }
 
+.createForm__action button{
+  margin-left: 20px;
+}
+
 .createForm__input{
   margin: 20px 0px;
 }
@@ -44,4 +48,15 @@
 
 .createForm__listSelect label, select{
   width: 100px;
+}
+
+.modal__content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__noti{
+  font-size: 18px;
+  font-weight: bold;
 }
