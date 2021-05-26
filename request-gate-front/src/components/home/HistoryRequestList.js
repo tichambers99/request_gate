@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import HistoryRequest from './HistoryRequest';
+import Pagination from '../pagination/Pagination';
 
 import '../common.css';
 
@@ -17,7 +18,7 @@ export default function HistoryRequestList(){
     fetchData();
   }, [])
   return(
-    <div className="historyRequestList box">
+    <div className="historyRequestList box box_fix">
       <div className="box__heading">History requests</div>
       {
         typeof(historyReqs)!=='undefined' &&
@@ -25,6 +26,7 @@ export default function HistoryRequestList(){
           historyReq => <HistoryRequest request={historyReq}/>
         )
       }
+      <Pagination />
     </div>
   )
 }
