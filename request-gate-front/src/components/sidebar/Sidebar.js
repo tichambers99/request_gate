@@ -1,14 +1,15 @@
 import React from 'react'
-import './sidebar.css';
+import { Link } from 'react-router-dom';
 
+import './sidebar.css';
 import '../common.css'
 export default function SideBar(){
   return(
     <div className='box box_fix sidebar'>
       <ul className="box__list">
-        <li><a href='#'>Request</a></li>
-        <li><a href='#'>User</a></li>
-        <li><a href='#'>Log out</a></li>
+        <li><Link to='/request'>Request</Link></li>
+        <li><Link to='#'>User</Link></li>
+        <li><Link to='#'>Log out</Link></li>
       </ul>
     </div>
   )
