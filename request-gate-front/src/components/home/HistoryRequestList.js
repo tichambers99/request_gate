@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
 import HistoryRequest from './HistoryRequest';
 import Pagination from '../pagination/Pagination';
 
@@ -16,7 +15,6 @@ export default function HistoryRequestList(){
       setHistoryReqs(res.data);
       console.log(res.data);
     }
-
     fetchData();
   }, [])
   return(

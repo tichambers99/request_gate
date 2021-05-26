@@ -1,7 +1,13 @@
 .createForm{
   padding: 20px;
 }
-
+.select.hip__create input {
+	border: 1px solid gray;
+}
+.select.hip__create {
+	display: flex;
+  margin-right: auto;
+}
 .createForm--flex{
   display: flex;
   justify-content: space-between;
