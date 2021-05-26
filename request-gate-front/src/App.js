@@ -11,6 +11,7 @@ import Home from './components/home/Home';
 import CreateRequest from './components/request/CreateRequest';
 import SideBar from './components/sidebar/Sidebar';
 import Login from './components/login/Login';
+import CreateUser from './components/admin/CreateUser';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Col>
             <Col md="10">
               <Switch>
+              <Route path="/create-user">
+                  <CreateUser />
+                </Route>
                 <Route path="/create-request">
                   <CreateRequest />
                 </Route>
