@@ -1,43 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import moment from 'moment';
 import { Col } from 'reactstrap';
 import { useRouteMatch, useParams, Link, Switch, Route } from 'react-router-dom';
 
-import UpdateRequest from './UpdateRequest'
+import AuthContext from '../contexts/AuthContext'
 import '../common.css';
 import './request.css';
 import './requestDetail.css';
 import axios from 'axios';
 
 export default function RequestDetail(){
+  const auth = useContext(AuthContext);
   const  { path, url }  = useRouteMatch();
-  console.log(url);
-  const [reqDetail, setReqDetail] = useState({})
-  const comment = [
-    {
-      id: 1,
-      author: "Calum Chambers",
-      date: "30/07/2021",
-      content: "This request should be requested by anthor people"
-    },
-    {
-      id: 2,
-      author: "Rob Holding",
-      date: "30/09/2021",
-      content: "I like this request"
-    },
-  ]
+
+  const [reqDetail, setReqDetail] = useState({});
+  const [comment, setComment] = useState([]);
+  const [newComment, setNewComment] = useState({});
   const { requestId } = useParams();
   
-
   useEffect(()=>{
     const fetchData = async() => {
-      const res = await axios.get(`https://l1z9u.sse.codesandbox.io/requests?id=${requestId}`);
-      setReqDetail(res.data[0]);
+      const reqRes = await axios.get(`https://l1z9u.sse.codesandbox.io/requests?id=${requestId}`);
+      const cmtRes = await axios.get(`https://l1z9u.sse.codesandbox.io/comment?request_id=${requestId}`);
+      setReqDetail(reqRes.data[0]);
+      setComment(cmtRes.data);
     }
 
     fetchData();
   }, [])
 
+  // useEffect(()=>{
+  //   if(newComment.content!=='undefined'){
+  //     console.log('post');
+  //     axios.post(`https://l1z9u.sse.codesandbox.io/comment`, newComment)
+  //   }
+  // }, [comment])
+
+  const onHandleChange = (e) => {
+  }
+
+  //create new comment by pressing enter key
+  // enter charCode = 13
+  const onKeyUp = (e) => {
+    if(e.key === 'Enter'){
+      if(e.target.value!==''){
+        let date = moment(new Date()).format("DD/MM/YYYY");
+
+        setNewComment({
+          content: e.target.value.trim(),
+          request_id: parseInt(requestId),
+          date: date,
+          author: auth.user.name
+        });
+        setComment([
+          ...comment,
+          {
+            content: e.target.value.trim(),
+            request_id: parseInt(requestId),
+            date: date,
+            author: auth.user.name
+          }
+        ]);
+      }
+    }
+  }
   
   return(
     <Col className="box box_fix requestDetails">
@@ -97,7 +123,11 @@ export default function RequestDetail(){
             ))
           }
         </div>
-        <input type="text" placeholder="Write a comment"/>
+        <input
+          onChange={(e)=>onHandleChange}
+          onKeyUp={onKeyUp}
+          type="text"
+          placeholder="Write a comment"/>
         </div>
       </div>}
     </Col>

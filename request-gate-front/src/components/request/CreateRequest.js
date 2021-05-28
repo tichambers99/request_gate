@@ -1,8 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Modal } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+import AuthContext from "../contexts/AuthContext";
 
 import tickImg from '../../icon/tick.png';
 import errorImg from '../../icon/error.png';
@@ -10,11 +12,13 @@ import '../common.css';
 import './request.css'
 
 export default function CreateRequest(){
+  const auth = useContext(AuthContext);
   // test axios.post
   const [request, setRequest] = useState({
       name: "",
+      author_id: auth.user.id,
       content: "",
-      author: "",
+      author: auth.user.name,
       date: "",
       category: "",
       assigner: "",

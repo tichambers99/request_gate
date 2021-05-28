@@ -2,14 +2,21 @@
   width: 100%;
 }
 
-#listRequests{
+table#listRequests{
+  display: block;
+  height: 400px;
   border: solid 2px #000;
   width: 100%;
   font-size: 11px;
+  overflow-y: scroll;
 }
 
 #listRequests th{
   border-bottom: 2px solid #000;
+}
+
+#listRequests tr{
+  width: 100%;
 }
 
 #listRequests tr:nth-child(even){background-color: #f2f2f2;}

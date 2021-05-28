@@ -17,7 +17,10 @@ export default (props) => {
 
   return (
     <div className='listRequests box box_fix'>
-      <div className="box__heading">List requests</div>
+      <div className="box__heading">
+        <div className='textHeading'>List requests</div>
+        <Link to='/request/create-request'><button className='button button--green'>New</button></Link>
+      </div>
       <button
         className="button button--white button__filter"
         onClick={toggle}  
@@ -90,14 +93,14 @@ export default (props) => {
       <Table id="listRequests">
       <thead>
         <tr>
-          <th>Name Request</th>
-          <th>Content Request</th>
-          <th>Author Create</th>
-          <th>Date Create</th>
-          <th>Category</th>
-          <th>Assigner</th>
-          <th>Status</th>
-          <th>View</th>
+          <th width="20%">Name Request</th>
+          <th width="20%">Content Request</th>
+          <th width="15%">Author Create</th>
+          <th width="10%">Date Create</th>
+          <th width="10%">Category</th>
+          <th width="15%">Assigner</th>
+          <th width="5%">Status</th>
+          <th width="5%">View</th>
         </tr>
       </thead>
       <tbody>
