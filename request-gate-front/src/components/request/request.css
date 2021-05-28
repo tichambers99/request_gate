@@ -1,13 +1,7 @@
 .createForm{
   padding: 20px;
 }
-.select.hip__create input {
-	border: 1px solid gray;
-}
-.select.hip__create {
-	display: flex;
-  margin-right: auto;
-}
+
 .createForm--flex{
   display: flex;
   justify-content: space-between;
@@ -17,10 +11,6 @@
 .createForm__heading{
   font-size: 24px;
   font-weight: bold;
-}
-
-.createForm__action button{
-  margin-left: 20px;
 }
 
 .createForm__input{
@@ -54,15 +44,4 @@
 
 .createForm__listSelect label, select{
   width: 100px;
-}
-
-.modal__content{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal__noti{
-  font-size: 18px;
-  font-weight: bold;
 }

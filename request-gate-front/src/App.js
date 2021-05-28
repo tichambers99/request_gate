@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -13,14 +12,11 @@ import CreateRequest from './components/request/CreateRequest';
 import RequestDetail from './components/request/RequestDetail';
 import SideBar from './components/sidebar/Sidebar';
 import Login from './components/login/Login';
-import CreateUser from './components/admin/CreateUser';
-import { UserProvider } from './components/contexts/UserContext';
+import { useState } from 'react';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-
   return (
-    <UserProvider>
     <Router>
       {isLogin === false && <Login />}
       {isLogin === true && 
@@ -51,7 +47,7 @@ function App() {
         </div>
       }
     </Router>
-    </UserProvider>
+
   );
 }
 

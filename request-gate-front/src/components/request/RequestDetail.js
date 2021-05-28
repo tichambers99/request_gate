@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Col } from 'reactstrap';
-import { useRouteMatch, useParams, Link, Switch, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import UpdateRequest from './UpdateRequest'
 import '../common.css';
 import './request.css';
 import './requestDetail.css';
 import axios from 'axios';
 
 export default function RequestDetail(){
-  const  { path, url }  = useRouteMatch();
-  console.log(url);
   const [reqDetail, setReqDetail] = useState({})
+  const request = {
+    id: 1,
+    name: "Request computer's monitor",
+    content: "nothing to request",
+    author: "Holding",
+    date: "10/5/2021",
+    category: "category name",
+    assigner: "calum chambers",
+    status: "process"
+  }
   const comment = [
     {
       id: 1,
@@ -46,10 +53,7 @@ export default function RequestDetail(){
         <div className="infor">
           <div className='infor__heading'>
             <div className='heading'>{reqDetail.name}</div>
-            <div className='infor__action'>
-              <button className='button button--blue'>{reqDetail.status}</button>
-              <Link to={`${url}/edit`}><button className='button button--green'>Edit</button></Link>
-            </div>
+            <button className='button button--blue'>{reqDetail.status}</button>
           </div>
           <div className="infor_author">
             <img

@@ -22,10 +22,6 @@
   font-weight: bold;
 }
 
-.infor__action button{
-  margin-left: 20px;
-}
-
 .infor_author{
   display: flex;
   align-items: center;
