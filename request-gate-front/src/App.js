@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -11,6 +10,7 @@ import { Col, Row } from 'reactstrap';
 import ProtectedRoute from './components/routing/ProtectedRoute';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Login from './components/login/Login';
+
 import { AuthProvider } from './components/contexts/AuthContext'
 
 function App() {
