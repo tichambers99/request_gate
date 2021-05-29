@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
+import AuthContext from '../contexts/AuthContext';
 import ListRequests from './ListRequests';
 import HistoryRequestList from './HistoryRequestList';
 
@@ -12,6 +13,7 @@ import { Row, Col } from 'reactstrap';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 export default function Home(){
+  const { user } = useContext(AuthContext)
   const [requests, setRequests] = useState([]);
   const  { path, url }  = useRouteMatch();
 
@@ -21,7 +23,14 @@ export default function Home(){
 
   useEffect(()=>{
     const fetchData = async () => {
-      const res = await axios.get('https://l1z9u.sse.codesandbox.io/requests');
+      let res;
+      if(user.role === 'user'){
+        res = await axios.get(`https://l1z9u.sse.codesandbox.io/requests?author_id=${user.id}`);
+      } else if(user.role === 'admin'){
+        res = await axios.get('https://l1z9u.sse.codesandbox.io/requests');
+      } else if(user.role === 'manager'){
+        //xem danh sách request từ CBNV bộ phận mình quản lý
+      } 
       setRequests(res.data);
     }
 
