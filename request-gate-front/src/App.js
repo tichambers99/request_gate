@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -31,6 +30,7 @@ function App() {
           </div>
       </Router>
     </AuthProvider>
+
   );
 }
 

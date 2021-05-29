@@ -12,6 +12,7 @@ import '../common.css';
 import './request.css'
 
 export default function CreateRequest(){
+
   const auth = useContext(AuthContext);
   // test axios.post
   const [request, setRequest] = useState({
@@ -48,40 +49,19 @@ export default function CreateRequest(){
 
   return(
     <Col className="box box_fix createForm">
-      <Modal isOpen={modal} toggle={toggle}>
-        <div className='box'>
-          <div className="modal__content">
-            <img src={tickImg} alt="tick" />
-            <div className="modal__noti">Create request success</div>
-          </div>
-          <div className="modal__action">
-            <Link to='/request'>
-              <button className="button button--white" onClick={toggle}>Ok</button>
-            </Link>
-          </div>
-        </div>
-      </Modal>
       <div className='createForm--flex'>
         <div className='createForm__heading'>Create request</div>
-        <button 
-          onClick={postRequest}
-          className='button button--green'>Create</button>
+        <button className='button button--green'>Create</button>
       </div>
       <div className="createForm__input">
         <input 
-          onChange={ e => {
-            setRequest({...request, name: e.target.value})
-          }}
           placeholder='Title'
           type='text'
         />
       </div>
       <div className='box'>
         <div>
-          <textarea
-            onChange={ e => {
-              setRequest({...request, content: e.target.value})
-            }}
+          <textarea 
             className="createForm__textarea"
             placeholder="Add a description"
           >
@@ -97,12 +77,7 @@ export default function CreateRequest(){
           
           <div className='select'>
             <label for="category">Category</label>
-            <select
-              id="category"
-              onChange={(e)=> {
-                setRequest({...request, category: e.target.value})
-              }}
-            >
+            <select id="category">
               <option>Equipment</option>
               <option>Marketing</option>
               <option>Coding</option>
@@ -112,12 +87,7 @@ export default function CreateRequest(){
 
           <div className='select'>
             <label for="assign">Assign</label>
-            <select
-              id="assign"
-              onChange={(e)=> {
-                setRequest({...request, assigner: e.target.value})
-              }}
-            >
+            <select id="assign">
               <option>Jack</option>
               <option>Tom</option>
               <option>Jerry</option>

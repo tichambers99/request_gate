@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import moment from 'moment';
 import { Col } from 'reactstrap';
-import { useRouteMatch, useParams, Link, Switch, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import AuthContext from '../contexts/AuthContext'
 import '../common.css';
@@ -10,6 +10,7 @@ import './requestDetail.css';
 import axios from 'axios';
 
 export default function RequestDetail(){
+
   const auth = useContext(AuthContext);
   const  { path, url }  = useRouteMatch();
 
@@ -72,10 +73,7 @@ export default function RequestDetail(){
         <div className="infor">
           <div className='infor__heading'>
             <div className='heading'>{reqDetail.name}</div>
-            <div className='infor__action'>
-              <button className='button button--blue'>{reqDetail.status}</button>
-              <Link to={`${url}/edit`}><button className='button button--green'>Edit</button></Link>
-            </div>
+            <button className='button button--blue'>{reqDetail.status}</button>
           </div>
           <div className="infor_author">
             <img
