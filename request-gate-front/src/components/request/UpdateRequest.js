@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Col, Modal } from 'reactstrap';
 import { useParams, useRouteMatch, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
+import AuthContext from '../contexts/AuthContext';
 import warningImg from '../../icon/warning.png';
 import tickImg from '../../icon/tick.png';
 import '../common.css';
 import './request.css'
 
 export default function UpdateRequest(){
+  const { user } = useContext(AuthContext);
   const  { path, url }  = useRouteMatch();
   const [reqDetail, setReqDetail] = useState({})
   const { requestId } = useParams();
 
   const [modal, setModal] = useState(false);
   const [warningModal, settWarningModal] = useState(false);
+  const [ readOnly, setReadOnly ] = useState(false);
 
   const warningToggle = () => settWarningModal(!modal);
   const toggle = () => setModal(!modal);
@@ -27,6 +30,12 @@ export default function UpdateRequest(){
     }
 
     fetchData();
+  }, [])
+
+  useEffect(()=>{
+    if(reqDetail && reqDetail.status === 'close'){
+      setReadOnly(true);
+    }
   }, [])
 
   const onHandleUpdate = () =>{
@@ -45,6 +54,7 @@ export default function UpdateRequest(){
 
     warningToggle();
   }
+
   return(
     <Col className="box box_fix createForm">
       {typeof(reqDetail)!== 'undefined'&&
@@ -78,24 +88,30 @@ export default function UpdateRequest(){
           </Modal>
           <div className='createForm--flex'>
             <div className='createForm__heading'>Update request</div>
-            <div className='createForm__action'>
-              <button
-                className='button button--green'
-                onClick={warningToggle}
-              >
-                Delete
-              </button>
-              <button
-                className='button button--blue'
-                onClick={onHandleUpdate}
-              >
-                Update
-              </button>
-            </div>
+            {reqDetail.status !== 'close' && 
+              <div className='createForm__action'>
+                <button
+                  className='button button--red'
+                  onClick={warningToggle}
+                >
+                  Delete
+                </button>
+                <button
+                  className='button button--blue'
+                  onClick={onHandleUpdate}
+                >
+                  Update
+                </button>
+              </div>
+            }
+            {reqDetail.status === 'close' && 
+              <div>This request is closed</div>
+            }
           </div>
           <div className="createForm__input">
             <input
-              value={reqDetail.name} 
+              readOnly={readOnly}
+              value={reqDetail.name}
               placeholder='Title'
               type='text'
               onChange={(e)=>{setReqDetail({...reqDetail, name: e.target.value})}}
@@ -105,6 +121,7 @@ export default function UpdateRequest(){
             <div>
               <textarea
                 value={reqDetail.content}
+                readOnly={readOnly}
                 onChange={(e)=>{setReqDetail({...reqDetail, content: e.target.value})}}
                 className="createForm__textarea"
                 placeholder="Add a description"
@@ -114,9 +131,18 @@ export default function UpdateRequest(){
             <div className="createForm__listSelect"> 
               <div className='select'>
                 <label for="status">Status</label>
-                <select id="status">
-                  <option value="open">open</option>
-                </select>
+                {user.role === 'admin' &&
+                  <select id="status" value={reqDetail.status}>
+                    {console.log(reqDetail)}
+                    <option value="open">open</option>
+                    <option value="progress">progress</option>
+                    <option value="close">close</option>
+                  </select>
+                }
+                {user.role === 'user'&&
+                  <span>{reqDetail.status}</span>
+                }
+                {console.log(user)}
               </div>
               
               <div className='select'>
@@ -147,7 +173,7 @@ export default function UpdateRequest(){
                 </select>
               </div>
             </div>
-          </div>
+          </div>  
         </div>
       }
     </Col>

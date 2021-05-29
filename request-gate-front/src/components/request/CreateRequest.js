@@ -22,7 +22,7 @@ export default function CreateRequest(){
       date: "",
       category: "",
       assigner: "",
-      status: "pending"
+      status: "open"
   });
 
   const [modal, setModal] = useState(false);

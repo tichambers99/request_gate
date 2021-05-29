@@ -61,6 +61,11 @@
   color: #000;
 }
 
+.button--red{
+  background-color: rgb(228, 52, 52);
+  color: #fff;
+}
+
 .button--blue{
   background-color: #2B78E4;
   color: #fff;

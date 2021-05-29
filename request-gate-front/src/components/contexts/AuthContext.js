@@ -8,7 +8,7 @@ export function AuthProvider(props){
     email: "chambers@hblab.vn",
     name: "Chambers",
     part: "Developer",
-    role: "user"
+    role: "admin"
   })
   const fakeAuth = {
     isAuthenticated: true,
@@ -29,7 +29,7 @@ export function AuthProvider(props){
         email: "chambers@hblab.vn",
         name: "Chambers",
         part: "Developer",
-        role: "user"
+        role: "admin"
       });
       cb();
     });
