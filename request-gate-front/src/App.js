@@ -7,47 +7,30 @@ import {
 } from "react-router-dom";
 import { Col, Row } from 'reactstrap';
 
-import Home from './components/home/Home';
-import CreateRequest from './components/request/CreateRequest';
-import RequestDetail from './components/request/RequestDetail';
-import SideBar from './components/sidebar/Sidebar';
+import ProtectedRoute from './components/routing/ProtectedRoute';
+import PrivateRoute from './components/routing/PrivateRoute';
 import Login from './components/login/Login';
-import { useState } from 'react';
+
+import { AuthProvider } from './components/contexts/AuthContext'
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
   return (
-    <Router>
-      {isLogin === false && <Login />}
-      {isLogin === true && 
-        <div className="App">
-          <div className='main'>
-            <Row>
-              <Col md='1'>
-              <SideBar />
-              </Col>
-              <Col md="11">
-                <Switch>
-                  <Route path="/create-request">
-                    <CreateRequest />
-                  </Route>
-                  <Route path="/login">
-                    <Login />
-                  </Route>
-                  <Route path="/request-detail">
-                    <RequestDetail />
-                  </Route>
-                  <Route path="/request">
-                    <Home />
-                  </Route>
-                </Switch>
-              </Col>
-            </Row>
+    <AuthProvider>
+      <Router>
+          <div className="App">
+            <div className='mainContainer'>
+              <Switch>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <PrivateRoute path="/request">
+                  <ProtectedRoute />
+                </PrivateRoute>
+              </Switch>
+            </div>
           </div>
-        </div>
-      }
-    </Router>
-
+      </Router>
+    </AuthProvider>
   );
 }
 

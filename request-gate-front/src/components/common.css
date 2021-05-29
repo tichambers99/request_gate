@@ -8,10 +8,15 @@
 }
 
 .box__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.box__heading .textHeading{
   font-weight: bold;
   font-size: 24px;
-  text-align: center;
-  margin-bottom: 10px;
 }
 
 .box__list{
@@ -79,4 +84,9 @@
 .pagination button{
   width: 30px;
   margin: 10px 5px;
+}
+
+.link{
+  color: #000;
+  text-decoration: none;
 }

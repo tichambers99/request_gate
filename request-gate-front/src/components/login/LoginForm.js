@@ -1,50 +1,65 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AuthContext from "../contexts/AuthContext";
+import { useHistory, useLocation } from 'react-router-dom';
+
 import '../common.css'
 import './login.css';
 
-function LoginForm({ Login_htp, error }) {
-  // const [details, setDetails] = useState({ name: "", email: "", password: "" });
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   Login_htp(details);
-  // }
+function LoginForm() {
+  const [ account, setAccount ] = useState({
+    email: "",
+    password: ""
+  });
+  const auth = useContext(AuthContext);
+
+  let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/request" } };
+  let login = () => {
+    console.log(account);
+    auth.signIn(() => {
+      history.replace(from);
+    });
+  };
+
   return (
-    // <form onSubmit={submitHandler}>
-    //   <div className="form-inner">
-    //     <h2>Login</h2>
-    //     {(error !== "") ? (<div className="erro"> {error} </div>) : ""}
-    //     <div className="form-group">
-    //       <label htmlFor="name">Name: </label>
-    //       <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}></input>
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="email">Email: </label>
-    //       <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} value={details.email}></input>
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="password">Password: </label>
-    //       <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
-    //     </div>
-    //     <input type="submit" value="LOGIN"></input>
-    //   </div>
-    // </form>
-    <form className='box login'>
+    <div className='box login'>
         <fieldset className="login__fieldset">
           <legend className="login__legend">Email</legend>
-          <input className="login__input" type="text" id="email" name="email" />
+          <input
+            onChange={(e)=>{
+              setAccount({...account, email: e.target.value})
+            }}
+            className="login__input"
+            type="text" id="email"
+            name="email" 
+          />
         </fieldset>
         <fieldset className="login__fieldset">
           <legend className="login__legend">Password</legend>
-          <input className="login__input" type="password" id="password" name="password" />
+          <input
+            onChange={(e)=>{
+              setAccount({...account, password: e.target.value})
+            }}
+            className="login__input"
+            type="password"
+            id="password"
+            name="password" />
         </fieldset>
         <label>
           <input type="checkbox" checked="checked" name="remember" /> Remember me
         </label>
         <div>
-          <button className='button button--white button__login'>Login</button>
+          <button 
+            className='button button--white button__login'
+            onClick={login}
+          >
+            Login
+          </button>
         </div>
         
-    </form>
+    </div>
   );
 }
 

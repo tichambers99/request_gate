@@ -3,7 +3,10 @@ import axios from 'axios';
 
 import ListRequests from './ListRequests';
 import HistoryRequestList from './HistoryRequestList';
-import RequestDetail from '../request/RequestDetail'
+
+import RequestDetail from '../request/RequestDetail';
+import UpdateRquest from '../request/UpdateRequest';
+import CreateRequest from '../request/CreateRequest';
 
 import { Row, Col } from 'reactstrap';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
@@ -40,6 +43,12 @@ export default function Home(){
               <HistoryRequestList />
             </Col>
           </Row> 
+        </Route>
+        <Route path={`${path}/create-request`}>
+          <CreateRequest />
+        </Route>
+        <Route path={`${path}/:requestId/edit`}>
+          <UpdateRquest />
         </Route>
         <Route path={`${path}/:requestId`}>
           <RequestDetail />

@@ -6,9 +6,9 @@ export default function SideBar(){
   return(
     <div className='box box_fix sidebar'>
       <ul className="box__list">
-        <li><a href='#'>Page 1</a></li>
-        <li><a href='#'>Page 2</a></li>
-        <li><a href='#'>Page 3</a></li>
+        <li><Link className='link' to='/request' >Request</Link></li>
+        <li><Link className='link' to='/user' >User</Link></li>
+        <li><Link className='link' to='#' >Log out</Link></li>
       </ul>
     </div>
   )
