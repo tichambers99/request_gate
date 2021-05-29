@@ -4,6 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import '../common.css'
 import './login.css';
+import axios from "axios";
 
 function LoginForm() {
   const [ account, setAccount ] = useState({
@@ -22,6 +23,14 @@ function LoginForm() {
       history.replace(from);
     });
   };
+
+  const testLogin = async() => {
+    const res = await axios.post('localhost:8000/api/login', account);
+
+    if(res.data){
+      console.log(res.data)
+    }
+  }
 
   return (
     <div className='box login'>
@@ -53,7 +62,7 @@ function LoginForm() {
         <div>
           <button 
             className='button button--white button__login'
-            onClick={login}
+            onClick={testLogin}
           >
             Login
           </button>
