@@ -16,4 +16,10 @@ class cbnv extends Model
     public function bophan(){
     	return $this->belongsTo('App\bophan');
     }
+    public function comment(){
+    	return $this->hasMany('App\comment','id_cbnv','id');
+    }
+    public function request(){
+    	return $this->hasMany('App\request','id_author','id');
+    }
 }

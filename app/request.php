@@ -14,6 +14,6 @@ class request extends Model
     }
 
     public function comment(){
-    	return $this->hasMany('App\request','id_request','id');
+    	return $this->hasMany('App\comment','id_request','id');
     }
 }
