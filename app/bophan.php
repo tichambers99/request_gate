@@ -12,4 +12,7 @@ class bophan extends Model
     public function cbnvs(){
     	return $this->hasMany('App\cbnv');
     }
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
 }

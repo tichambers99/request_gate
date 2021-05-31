@@ -16,4 +16,7 @@ class cbnv extends Model
     public function bophan(){
     	return $this->belongsTo('App\bophan');
     }
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
 }
