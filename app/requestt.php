@@ -8,7 +8,7 @@ class requestt extends Model
 {
     //
     protected $table = "request";
-    protected $fillable = ['id','title','category','status','due','description','is_cheked','id_author'];
+    protected $fillable = ['id','title','category','status','due','description','is_checked','id_author'];
     public $timestamps = false;
 
     public function cbnv(){

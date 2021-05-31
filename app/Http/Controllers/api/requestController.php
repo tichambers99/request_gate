@@ -20,9 +20,9 @@ class requestController extends Controller
         $re = requestt::all();
          
          // return response()-> json([
-         //        'id' => $request->get('id'),
-         //        'content' => $request->get('title'),
-         //        'status' => $request->get('status')
+         //        'id' => $re->get('id'),
+         //        'content' => $re->get('title'),
+         //        'status' => $re->get('status')
          //    ]);
         return $re;
        
@@ -60,7 +60,8 @@ class requestController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = requestt::find($id);
+        return response()->json($item);
     }
 
     /**
@@ -75,7 +76,18 @@ class requestController extends Controller
         // $post->update($request->all());
         // return $post;
 
-        return response()->json('Successfully Updated');
+        $item = requestt::find($id);
+        $item->title = $request->get('title');
+        $item->status = $request->get('status');
+        $item->id_author = $request->get('id_author');
+        $item->due = $request->get('due');
+        $item->category = $request->get('category');
+        $item->is_checked = $request->get('is_checked');
+        $item->description = $request->get('description');
+
+        $item->save();
+
+        return response()->json([$item, 'Successfully Updated']);
     }
 
     /**
