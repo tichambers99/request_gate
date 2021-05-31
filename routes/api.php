@@ -21,3 +21,6 @@ Route::post('register', 'api\RegisterController@register');
 Route::post('login', 'api\LoginController@login');
 Route::post('resetpassword', 'api\ResetPasswordController@sendMail');
 Route::put('resetpassword/{token}', 'api\ResetPasswordController@reset');
+
+Route::apiResource('requests', 'api\requestController');
+Route::apiResource('comment', 'api\commentController');
