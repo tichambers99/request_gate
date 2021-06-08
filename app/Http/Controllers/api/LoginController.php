@@ -24,15 +24,14 @@ class LoginController extends Controller
             if(empty($checkTokenExit)){
                 $userSession = $request->user();
                 $role = cbnv::where('id', Auth::id())->first()->role;
-                $part = bophan::where('id', auth()->id())->first()->name;
+                
             }else{
                 $userSession = $checkTokenExit;
             }
             return response()-> json([
                 'code' => 200,
                 'user' => $userSession,
-                'role' => $role,
-                'part' => $part
+                'role' => $role
             ], 200);
         }else{
             return response()->json([

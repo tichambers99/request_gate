@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\PasswordReset;
 use App\Notifications\ResetPasswordRequest;
-
+use App\Http\Controllers\Controller;
 class ResetPasswordController extends Controller
 {
     /**
@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
         	'token' => Str::random(60),
         ]);
         if ($passwordReset) {
-            $user->notify(new ResetPassword($passwordReset->token));
+            $user->notify(new ResetPasswordRequest($passwordReset->token));
         }
   
         return response()->json([

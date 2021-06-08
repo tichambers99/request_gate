@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class requestt extends Model
 {
     //
-    protected $table = "request";
+    protected $table = "requests";
     protected $fillable = ['id','title','category','status','due','description','is_checked','id_author'];
     public $timestamps = false;
 
