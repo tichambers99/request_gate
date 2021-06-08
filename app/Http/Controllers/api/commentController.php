@@ -40,7 +40,8 @@ class commentController extends Controller
      */
     public function show($id)
     {
-       //
+        $item = commentt::find($id);
+        return response()->json($item);
     }
 
     /**
