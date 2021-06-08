@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use App\cbnv;
 use App\requestt;
 
@@ -17,15 +18,17 @@ class requestController extends Controller
      */
     public function index(Request $request)
     {
-        $re = requestt::all();
-         
-         // return response()-> json([
-         //        'id' => $re->get('id'),
-         //        'content' => $re->get('title'),
-         //        'status' => $re->get('status')
-         //    ]);
-        return $re;
-       
+        // $re = requestt::all(); 
+        // return $re;
+        
+        $req = DB::table('cbnv')
+            ->join('requests','requests.id_author','=','cbnv.id')
+            ->join('bophan','bophan.id','=','cbnv.id_bophan')
+//            ->select('request.id','cbnv.id_bophan','bophan.name','request.title','request.description','request.id_author','request.due','request.category')
+            ->select('requests.*','cbnv.id_bophan','cbnv.name')
+            ->get();
+            
+        return response()->json($req);
     }
 
     /**
@@ -36,20 +39,20 @@ class requestController extends Controller
      */
     public function store(Request $request)
     {
-        return requestt::create($request->all());
+        //return requestt::create($request->all());
  
-        // $item = new requestt([
-        //   'id' => $request->get('id'),
-        //   'title' => $request->get('content'),
-        //   'status' => $request->get('status'),
-        //   'id_author' => $request->get('author_id'),
-        //   'due' => $request->get('date'),
-        //   'category' => $request->get('category'),
-        //   'is_checked' => $request->get('is_checked'),
-        //   'description' => $request->get('description')
-        // ]);
-        // $item->save();
-        return response()->json('Successfully added');
+        $item = new requestt([
+          'id' => $request->get('id'),
+          'title' => $request->get('title'),
+          'status' => $request->get('status'),
+          'id_author' => $request->get('id_author'),
+          'due' => $request->get('due'),
+          'category' => $request->get('category'),
+          'is_checked' => $request->get('is_checked'),
+          'description' => $request->get('description')
+        ]);
+        $item->save();
+        return response()->json([$item,'Successfully added']);
     }
 
     /**
@@ -60,8 +63,17 @@ class requestController extends Controller
      */
     public function show($id)
     {
-        $item = requestt::find($id);
-        return response()->json($item);
+        // $item = requestt::find($id);
+        // return response()->json($item);
+
+        $req = DB::table('cbnv')
+            ->join('requests','requests.id_author','=','cbnv.id')
+            ->join('bophan','bophan.id','=','cbnv.id_bophan')
+            ->select('requests.*','cbnv.id_bophan','cbnv.name')
+            ->where('requests.id','=',$id)
+            ->get();
+            
+        return response()->json($req);
     }
 
     /**
